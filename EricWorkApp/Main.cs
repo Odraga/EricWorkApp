@@ -16,6 +16,7 @@ namespace EricWorkApp
 {
     public partial class Main : Form
     {
+        private WorkHoursModel workHoursModel;
         public Main()
         {
             InitializeComponent();
@@ -31,6 +32,23 @@ namespace EricWorkApp
             ConfigurationOption configurationOption = new ConfigurationOption();
 
             configurationOption.ShowDialog();
+        }
+
+        private void btn_validate_horary_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                workHoursModel = new WorkHoursModel();
+
+                ValidateHoraryOption validateHoraryOption = new ValidateHoraryOption();
+
+                validateHoraryOption.ShowDialog();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }

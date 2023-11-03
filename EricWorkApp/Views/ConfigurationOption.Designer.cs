@@ -29,12 +29,6 @@
         private void InitializeComponent()
         {
             this.dgv_WorkHours = new System.Windows.Forms.DataGridView();
-            this.ColumnId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnStartTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnEndTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btn_delete_work_horary = new System.Windows.Forms.Button();
-            this.btn_add_work_hourary = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.lbl_total_hours = new System.Windows.Forms.Label();
@@ -45,6 +39,11 @@
             this.dtp_start_date = new System.Windows.Forms.DateTimePicker();
             this.lbl_end_date = new System.Windows.Forms.Label();
             this.dtp_end_date = new System.Windows.Forms.DateTimePicker();
+            this.btn_delete_work_horary = new System.Windows.Forms.Button();
+            this.btn_add_work_hourary = new System.Windows.Forms.Button();
+            this.ColumnCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnStartTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnEndTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_WorkHours)).BeginInit();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -57,7 +56,6 @@
             this.dgv_WorkHours.AllowUserToDeleteRows = false;
             this.dgv_WorkHours.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_WorkHours.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ColumnId,
             this.ColumnCode,
             this.ColumnStartTime,
             this.ColumnEndTime});
@@ -66,62 +64,6 @@
             this.dgv_WorkHours.ReadOnly = true;
             this.dgv_WorkHours.Size = new System.Drawing.Size(560, 175);
             this.dgv_WorkHours.TabIndex = 0;
-            // 
-            // ColumnId
-            // 
-            this.ColumnId.HeaderText = "ID";
-            this.ColumnId.Name = "ColumnId";
-            // 
-            // ColumnCode
-            // 
-            this.ColumnCode.HeaderText = "CODE";
-            this.ColumnCode.Name = "ColumnCode";
-            // 
-            // ColumnStartTime
-            // 
-            this.ColumnStartTime.HeaderText = "START TIME";
-            this.ColumnStartTime.Name = "ColumnStartTime";
-            // 
-            // ColumnEndTime
-            // 
-            this.ColumnEndTime.HeaderText = "END TIME";
-            this.ColumnEndTime.Name = "ColumnEndTime";
-            // 
-            // btn_delete_work_horary
-            // 
-            this.btn_delete_work_horary.BackColor = System.Drawing.Color.Transparent;
-            this.btn_delete_work_horary.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btn_delete_work_horary.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_delete_work_horary.FlatAppearance.BorderSize = 0;
-            this.btn_delete_work_horary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_delete_work_horary.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.btn_delete_work_horary.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.btn_delete_work_horary.Image = global::EricWorkApp.Properties.Resources.delete;
-            this.btn_delete_work_horary.Location = new System.Drawing.Point(3, 0);
-            this.btn_delete_work_horary.Name = "btn_delete_work_horary";
-            this.btn_delete_work_horary.Size = new System.Drawing.Size(86, 165);
-            this.btn_delete_work_horary.TabIndex = 2;
-            this.btn_delete_work_horary.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btn_delete_work_horary.UseVisualStyleBackColor = false;
-            this.btn_delete_work_horary.Click += new System.EventHandler(this.btn_delete_work_horary_Click);
-            // 
-            // btn_add_work_hourary
-            // 
-            this.btn_add_work_hourary.BackColor = System.Drawing.Color.Transparent;
-            this.btn_add_work_hourary.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btn_add_work_hourary.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_add_work_hourary.FlatAppearance.BorderSize = 0;
-            this.btn_add_work_hourary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_add_work_hourary.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.btn_add_work_hourary.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.btn_add_work_hourary.Image = global::EricWorkApp.Properties.Resources.boton_agregar;
-            this.btn_add_work_hourary.Location = new System.Drawing.Point(471, 3);
-            this.btn_add_work_hourary.Name = "btn_add_work_hourary";
-            this.btn_add_work_hourary.Size = new System.Drawing.Size(86, 159);
-            this.btn_add_work_hourary.TabIndex = 1;
-            this.btn_add_work_hourary.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btn_add_work_hourary.UseVisualStyleBackColor = false;
-            this.btn_add_work_hourary.Click += new System.EventHandler(this.btn_add_work_hourary_Click);
             // 
             // panel1
             // 
@@ -224,6 +166,60 @@
             this.dtp_end_date.TabIndex = 6;
             this.dtp_end_date.ValueChanged += new System.EventHandler(this.dtp_end_date_ValueChanged);
             // 
+            // btn_delete_work_horary
+            // 
+            this.btn_delete_work_horary.BackColor = System.Drawing.Color.Transparent;
+            this.btn_delete_work_horary.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btn_delete_work_horary.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_delete_work_horary.FlatAppearance.BorderSize = 0;
+            this.btn_delete_work_horary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_delete_work_horary.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.btn_delete_work_horary.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btn_delete_work_horary.Image = global::EricWorkApp.Properties.Resources.delete;
+            this.btn_delete_work_horary.Location = new System.Drawing.Point(3, 0);
+            this.btn_delete_work_horary.Name = "btn_delete_work_horary";
+            this.btn_delete_work_horary.Size = new System.Drawing.Size(86, 165);
+            this.btn_delete_work_horary.TabIndex = 2;
+            this.btn_delete_work_horary.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btn_delete_work_horary.UseVisualStyleBackColor = false;
+            this.btn_delete_work_horary.Click += new System.EventHandler(this.btn_delete_work_horary_Click);
+            // 
+            // btn_add_work_hourary
+            // 
+            this.btn_add_work_hourary.BackColor = System.Drawing.Color.Transparent;
+            this.btn_add_work_hourary.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btn_add_work_hourary.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_add_work_hourary.FlatAppearance.BorderSize = 0;
+            this.btn_add_work_hourary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_add_work_hourary.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.btn_add_work_hourary.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btn_add_work_hourary.Image = global::EricWorkApp.Properties.Resources.boton_agregar;
+            this.btn_add_work_hourary.Location = new System.Drawing.Point(471, 3);
+            this.btn_add_work_hourary.Name = "btn_add_work_hourary";
+            this.btn_add_work_hourary.Size = new System.Drawing.Size(86, 159);
+            this.btn_add_work_hourary.TabIndex = 1;
+            this.btn_add_work_hourary.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btn_add_work_hourary.UseVisualStyleBackColor = false;
+            this.btn_add_work_hourary.Click += new System.EventHandler(this.btn_add_work_hourary_Click);
+            // 
+            // ColumnCode
+            // 
+            this.ColumnCode.HeaderText = "CODE";
+            this.ColumnCode.Name = "ColumnCode";
+            this.ColumnCode.ReadOnly = true;
+            // 
+            // ColumnStartTime
+            // 
+            this.ColumnStartTime.HeaderText = "START TIME";
+            this.ColumnStartTime.Name = "ColumnStartTime";
+            this.ColumnStartTime.ReadOnly = true;
+            // 
+            // ColumnEndTime
+            // 
+            this.ColumnEndTime.HeaderText = "END TIME";
+            this.ColumnEndTime.Name = "ColumnEndTime";
+            this.ColumnEndTime.ReadOnly = true;
+            // 
             // ConfigurationOption
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -263,10 +259,9 @@
         private System.Windows.Forms.Label lbl_end_date;
         private System.Windows.Forms.DateTimePicker dtp_end_date;
         private System.Windows.Forms.Label lbl_total_hours;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnId;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnStartTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnEndTime;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
     }
 }

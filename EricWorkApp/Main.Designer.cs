@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.btn_convert_time = new System.Windows.Forms.Button();
+            this.btn_validate_horary = new System.Windows.Forms.Button();
             this.btn_configuration = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -47,21 +47,21 @@
             this.panel1.Size = new System.Drawing.Size(630, 457);
             this.panel1.TabIndex = 0;
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.btn_validate_horary);
+            this.flowLayoutPanel1.Controls.Add(this.btn_configuration);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(50, 139);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(532, 268);
+            this.flowLayoutPanel1.TabIndex = 2;
+            // 
             // panel2
             // 
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(624, 87);
             this.panel2.TabIndex = 1;
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Controls.Add(this.btn_convert_time);
-            this.flowLayoutPanel1.Controls.Add(this.btn_configuration);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(50, 139);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(532, 268);
-            this.flowLayoutPanel1.TabIndex = 2;
             // 
             // label1
             // 
@@ -72,20 +72,21 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Made by gabrielvr.dev@gmail.com";
             // 
-            // btn_convert_time
+            // btn_validate_horary
             // 
-            this.btn_convert_time.BackColor = System.Drawing.Color.DodgerBlue;
-            this.btn_convert_time.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_convert_time.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_convert_time.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.btn_convert_time.Image = global::EricWorkApp.Properties.Resources.reloj_de_pared;
-            this.btn_convert_time.Location = new System.Drawing.Point(3, 3);
-            this.btn_convert_time.Name = "btn_convert_time";
-            this.btn_convert_time.Size = new System.Drawing.Size(125, 125);
-            this.btn_convert_time.TabIndex = 0;
-            this.btn_convert_time.Text = "Convert Time";
-            this.btn_convert_time.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btn_convert_time.UseVisualStyleBackColor = false;
+            this.btn_validate_horary.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btn_validate_horary.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_validate_horary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_validate_horary.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_validate_horary.Image = global::EricWorkApp.Properties.Resources.reloj_de_pared;
+            this.btn_validate_horary.Location = new System.Drawing.Point(3, 3);
+            this.btn_validate_horary.Name = "btn_validate_horary";
+            this.btn_validate_horary.Size = new System.Drawing.Size(125, 125);
+            this.btn_validate_horary.TabIndex = 0;
+            this.btn_validate_horary.Text = "Validate Horary";
+            this.btn_validate_horary.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btn_validate_horary.UseVisualStyleBackColor = false;
+            this.btn_validate_horary.Click += new System.EventHandler(this.btn_validate_horary_Click);
             // 
             // btn_configuration
             // 
@@ -130,7 +131,7 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button btn_convert_time;
+        private System.Windows.Forms.Button btn_validate_horary;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btn_configuration;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;

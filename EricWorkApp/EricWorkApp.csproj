@@ -83,9 +83,21 @@
     <Compile Include="Views\ConfigurationOption.Designer.cs">
       <DependentUpon>ConfigurationOption.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\ValidateHoraryOption.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ValidateHoraryOption.Designer.cs">
+      <DependentUpon>ValidateHoraryOption.cs</DependentUpon>
+    </Compile>
     <Content Include="db\erickworkdb.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\analizar2.png" />
+    <None Include="Resources\analizar1.png" />
+    <None Include="Resources\analizar.png" />
+    <EmbeddedResource Include="Views\ValidateHoraryOption.resx">
+      <DependentUpon>ValidateHoraryOption.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Resources\delete.png" />
     <None Include="Resources\boton-agregar.png" />
     <EmbeddedResource Include="Views\ConfigurationOption.resx">

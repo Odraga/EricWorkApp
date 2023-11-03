@@ -26,9 +26,6 @@ namespace EricWorkApp.Helper
                 result = (roundedTimeSpan.Hours < 1 ? roundedTimeSpan.Hours + 24 : roundedTimeSpan.Hours).ToString();
                 
 
-                // Extract the hours and minutes from the rounded TimeSpan
-
-                // Return the rounded TimeSpan as a string
                 return result.ToString();
             }
             catch (Exception ex)
