@@ -34,12 +34,16 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btn_validate_horary = new System.Windows.Forms.Button();
             this.btn_configuration = new System.Windows.Forms.Button();
+            this.btn_info = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.flowLayoutPanel1);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Location = new System.Drawing.Point(12, 12);
@@ -49,6 +53,7 @@
             // 
             // flowLayoutPanel1
             // 
+            this.flowLayoutPanel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.flowLayoutPanel1.Controls.Add(this.btn_validate_horary);
             this.flowLayoutPanel1.Controls.Add(this.btn_configuration);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(50, 139);
@@ -58,6 +63,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btn_info);
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(624, 87);
@@ -104,6 +110,27 @@
             this.btn_configuration.UseVisualStyleBackColor = false;
             this.btn_configuration.Click += new System.EventHandler(this.btn_configuration_Click);
             // 
+            // btn_info
+            // 
+            this.btn_info.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_info.FlatAppearance.BorderSize = 0;
+            this.btn_info.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_info.Image = global::EricWorkApp.Properties.Resources.info1;
+            this.btn_info.Location = new System.Drawing.Point(3, 3);
+            this.btn_info.Name = "btn_info";
+            this.btn_info.Size = new System.Drawing.Size(76, 81);
+            this.btn_info.TabIndex = 0;
+            this.btn_info.UseVisualStyleBackColor = true;
+            this.btn_info.Click += new System.EventHandler(this.btn_info_Click);
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.panel3.Location = new System.Drawing.Point(0, 88);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(629, 5);
+            this.panel3.TabIndex = 3;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -123,6 +150,7 @@
             this.Load += new System.EventHandler(this.Main_Load);
             this.panel1.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -136,6 +164,8 @@
         private System.Windows.Forms.Button btn_configuration;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btn_info;
+        private System.Windows.Forms.Panel panel3;
     }
 }
 

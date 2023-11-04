@@ -50,5 +50,11 @@ namespace EricWorkApp
                 throw;
             }
         }
+
+        private void btn_info_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Hecho Por: Gabriel Vargas.\nFecha de Creacion: 03/11/2023\nCorreo del Desarrollador: gabrielvr.dev@gmail.com");
+
+        }
     }
 }

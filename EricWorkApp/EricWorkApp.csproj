@@ -92,6 +92,7 @@
     <Content Include="db\erickworkdb.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\info1.png" />
     <None Include="Resources\analizar2.png" />
     <None Include="Resources\analizar1.png" />
     <None Include="Resources\analizar.png" />

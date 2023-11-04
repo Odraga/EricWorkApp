@@ -1,9 +1,11 @@
-﻿using EricWorkApp.Model;
+﻿using EricWorkApp.Helper;
+using EricWorkApp.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,19 +27,19 @@ namespace EricWorkApp.Views
         private bool Sunday = false;
 
         //Monday
-        private static List<WorkHours> mondayWorksHours = new List<WorkHours>();
+        private List<WorkHours> mondayWorksHours = new List<WorkHours>();
         //Tuesday
-        private static List<WorkHours> tuesdayWorksHours = new List<WorkHours>();
+        private List<WorkHours> tuesdayWorksHours = new List<WorkHours>();
         //Wednesday
-        private static List<WorkHours> wednesdayWorksHours = new List<WorkHours>();
+        private List<WorkHours> wednesdayWorksHours = new List<WorkHours>();
         //Thursday
-        private static List<WorkHours> thursdayWorksHours = new List<WorkHours>();
+        private List<WorkHours> thursdayWorksHours = new List<WorkHours>();
         //Friday
-        private static List<WorkHours> fridayWorksHours = new List<WorkHours>();
+        private List<WorkHours> fridayWorksHours = new List<WorkHours>();
         //Saturday
-        private static List<WorkHours> saturdayWorksHours = new List<WorkHours>();
+        private List<WorkHours> saturdayWorksHours = new List<WorkHours>();
         //Sunday
-        private static List<WorkHours> sundayWorksHours = new List<WorkHours>();
+        private List<WorkHours> sundayWorksHours = new List<WorkHours>();
 
 
         public ValidateHoraryOption()
@@ -87,6 +89,7 @@ namespace EricWorkApp.Views
 
         private void dgv_WorksHorary_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+
 
         }
 
@@ -252,10 +255,473 @@ namespace EricWorkApp.Views
 
         }
 
-        private void Add_Button_WorkHoraries()
+
+
+        private void dgv_WorksHorary_MouseDown(object sender, MouseEventArgs e)
+        {
+            
+
+
+        }
+
+        private bool WorksHoursExists(WorkHours wh, List<WorkHours> itemWorkHours) =>
+            itemWorkHours.Exists(x => x.ID == wh.ID && x.Code == wh.Code && x.StartDate == wh.StartDate && x.EndDate == wh.EndDate);
+
+        private void Delete_Item_WorkHours(int ID)
+        {
+            if (Monday)
+            {
+                var itemToRemove = mondayWorksHours.SingleOrDefault(r => r.ID == ID);
+
+                if (itemToRemove != null)
+                {
+                    flp_Monday.Controls.Clear();
+                    mondayWorksHours.Remove(itemToRemove);
+                    Reload_Horary();
+
+                }
+            }
+            else if (Tuesday)
+            {
+                var itemToRemove = tuesdayWorksHours.SingleOrDefault(r => r.ID == ID);
+
+                if (itemToRemove != null)
+                {
+                    flp_Tuesday.Controls.Clear();
+                    tuesdayWorksHours.Remove(itemToRemove);
+                    Reload_Horary();
+                }
+            }
+            else if (Wednesday)
+            {
+                var itemToRemove = wednesdayWorksHours.SingleOrDefault(r => r.ID == ID);
+
+                if (itemToRemove != null)
+                {
+                    flp_Wednesday.Controls.Clear();
+                    wednesdayWorksHours.Remove(itemToRemove);
+                    Reload_Horary();
+                }
+            }
+            else if (Thursday)
+            {
+                var itemToRemove = thursdayWorksHours.SingleOrDefault(r => r.ID == ID);
+
+                if (itemToRemove != null)
+                {
+                    flp_Thursday.Controls.Clear();
+                    thursdayWorksHours.Remove(itemToRemove);
+                    Reload_Horary();
+                }
+            }
+            else if (Friday)
+            {
+                var itemToRemove = fridayWorksHours.SingleOrDefault(r => r.ID == ID);
+
+                if (itemToRemove != null)
+                {
+                    flp_Friday.Controls.Clear();
+                    fridayWorksHours.Remove(itemToRemove);
+                    Reload_Horary();
+                }
+            }
+            else if (Saturday)
+            {
+                var itemToRemove = saturdayWorksHours.SingleOrDefault(r => r.ID == ID);
+
+                if (itemToRemove != null)
+                {
+                    flp_Saturday.Controls.Clear();
+                    saturdayWorksHours.Remove(itemToRemove);
+                    Reload_Horary();
+                }
+            }
+            else if (Sunday) 
+            {
+                var itemToRemove = sundayWorksHours.SingleOrDefault(r => r.ID == ID);
+
+                if (itemToRemove != null)
+                {
+                    flp_Sunday.Controls.Clear();
+                    sundayWorksHours.Remove(itemToRemove);
+                    Reload_Horary();
+                }
+            } 
+            
+        }
+
+        private string Plus_All_Label()
         {
             try
             {
+                int mondayValue = int.Parse(lbl_Total_Monday.Text);
+                int tuesdayValue = int.Parse(lbl_Total_Tuesday.Text);
+                int wednesdayValue = int.Parse(lbl_Total_Wednesday.Text);
+                int thursdayValue = int.Parse(lbl_Total_Thursday.Text);
+                int fridayValue = int.Parse(lbl_Total_Friday.Text);
+                int saturdayValue = int.Parse(lbl_Total_Saturday.Text);
+                int sundayValue = int.Parse(lbl_total_Sunday.Text);
+
+                 
+                return (mondayValue + tuesdayValue + wednesdayValue + thursdayValue + fridayValue + saturdayValue + sundayValue).ToString();
+            }
+            catch (Exception ex)
+            {
+                
+                MessageBox.Show("This is a ERROR? \n\n {" + ex.Message + "}");
+                return "0";
+            }
+        }
+
+        private void Reload_Horary()
+        {
+            try
+            {
+                DateTime startTime;
+                DateTime endTime;
+
+                if (Monday)
+                {
+                    lbl_Total_Monday.Text = "0";
+
+                    foreach (var item in mondayWorksHours)
+                    {
+
+                        Button button = new Button();
+                        button.Name = item.ID.ToString();
+                        button.Text = item.Code.ToString() + "\n" + item.StartDate + " / " + item.EndDate;
+                        button.Size = new Size(86, 45);
+                        button.BackColor = Color.White;
+                        button.FlatStyle = FlatStyle.Flat;
+                        
+                        button.Click += (s, ev) =>
+                        {
+                            Delete_Item_WorkHours(item.ID);
+                        };
+                        
+
+                        DateTime.TryParseExact(item.StartDate, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out startTime);
+                        DateTime.TryParseExact(item.EndDate, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out endTime);
+
+                        int plusTime = int.Parse(lbl_Total_Monday.Text) + int.Parse(ConvertHours.RestBetweenHours(startTime, endTime));
+                        
+                        lbl_Total_Monday.Text = plusTime.ToString();
+
+                        lbl_Total_Hours.Text = Plus_All_Label();
+
+                        flp_Monday.Controls.Add(button);
+                    }
+                }
+                else if (Tuesday)
+                {
+                    lbl_Total_Tuesday.Text = "0";
+
+                    foreach (var item in tuesdayWorksHours)
+                    {
+
+                        Button button = new Button();
+                        button.Name = item.ID.ToString();
+                        button.Text = item.Code.ToString() + "\n" + item.StartDate + " / " + item.EndDate;
+                        button.Size = new Size(86, 45);
+                        button.BackColor = Color.White;
+                        button.FlatStyle = FlatStyle.Flat;
+
+                        button.Click += (s, ev) =>
+                        {
+                            Delete_Item_WorkHours(item.ID);
+                        };
+
+                        DateTime.TryParseExact(item.StartDate, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out startTime);
+                        DateTime.TryParseExact(item.EndDate, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out endTime);
+
+                        int plusTime = int.Parse(lbl_Total_Tuesday.Text) + int.Parse(ConvertHours.RestBetweenHours(startTime, endTime));
+
+                        lbl_Total_Tuesday.Text = plusTime.ToString();
+
+                        lbl_Total_Hours.Text = Plus_All_Label();
+
+                        flp_Tuesday.Controls.Add(button);
+                    }
+
+                }
+                else if (Wednesday)
+                {
+                    lbl_Total_Wednesday.Text = "0";
+
+                    foreach (var item in wednesdayWorksHours)
+                    {
+
+                        Button button = new Button();
+                        button.Name = item.ID.ToString();
+                        button.Text = item.Code.ToString() + "\n" + item.StartDate + " / " + item.EndDate;
+                        button.Size = new Size(86, 45);
+                        button.BackColor = Color.White;
+                        button.FlatStyle = FlatStyle.Flat;
+
+                        button.Click += (s, ev) =>
+                        {
+                            Delete_Item_WorkHours(item.ID);
+                        };
+
+                        DateTime.TryParseExact(item.StartDate, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out startTime);
+                        DateTime.TryParseExact(item.EndDate, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out endTime);
+
+                        int plusTime = int.Parse(lbl_Total_Wednesday.Text) + int.Parse(ConvertHours.RestBetweenHours(startTime, endTime));
+
+                        lbl_Total_Wednesday.Text = plusTime.ToString();
+
+                        flp_Wednesday.Controls.Add(button);
+                    }
+
+                }
+                else if (Thursday)
+                {
+                    lbl_Total_Thursday.Text = "0";
+
+                    foreach (var item in thursdayWorksHours)
+                    {
+                        Button button = new Button();
+                        button.Name = item.ID.ToString();
+                        button.Text = item.Code.ToString() + "\n" + item.StartDate + " / " + item.EndDate;
+                        button.Size = new Size(86, 45);
+                        button.BackColor = Color.White;
+                        button.FlatStyle = FlatStyle.Flat;
+
+                        button.Click += (s, ev) =>
+                        {
+                            Delete_Item_WorkHours(item.ID);
+                        };
+
+                        DateTime.TryParseExact(item.StartDate, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out startTime);
+                        DateTime.TryParseExact(item.EndDate, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out endTime);
+
+                        int plusTime = int.Parse(lbl_Total_Thursday.Text) + int.Parse(ConvertHours.RestBetweenHours(startTime, endTime));
+
+                        lbl_Total_Thursday.Text = plusTime.ToString();
+
+                        flp_Thursday.Controls.Add(button);
+                    }
+
+                }
+                else if (Friday)
+                {
+                    lbl_Total_Friday.Text = "0";
+
+                    foreach (var item in fridayWorksHours)
+                    {
+                        Button button = new Button();
+                        button.Name = item.ID.ToString();
+                        button.Text = item.Code.ToString() + "\n" + item.StartDate + " / " + item.EndDate;
+                        button.Size = new Size(86, 45);
+                        button.BackColor = Color.White;
+                        button.FlatStyle = FlatStyle.Flat;
+
+                        button.Click += (s, ev) =>
+                        {
+                            Delete_Item_WorkHours(item.ID);
+                        };
+
+                        DateTime.TryParseExact(item.StartDate, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out startTime);
+                        DateTime.TryParseExact(item.EndDate, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out endTime);
+
+                        int plusTime = int.Parse(lbl_Total_Friday.Text) + int.Parse(ConvertHours.RestBetweenHours(startTime, endTime));
+
+                        lbl_Total_Friday.Text = plusTime.ToString();
+
+                        flp_Friday.Controls.Add(button);
+                    }
+
+                }
+                else if (Saturday)
+                {
+                    lbl_Total_Saturday.Text = "0";
+
+                    foreach (var item in saturdayWorksHours)
+                    {
+                        Button button = new Button();
+                        button.Name = item.ID.ToString();
+                        button.Text = item.Code.ToString() + "\n" + item.StartDate + " / " + item.EndDate;
+                        button.Size = new Size(86, 45);
+                        button.BackColor = Color.White;
+                        button.FlatStyle = FlatStyle.Flat;
+
+                        button.Click += (s, ev) =>
+                        {
+                            Delete_Item_WorkHours(item.ID);
+                        };
+
+                        DateTime.TryParseExact(item.StartDate, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out startTime);
+                        DateTime.TryParseExact(item.EndDate, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out endTime);
+
+                        int plusTime = int.Parse(lbl_Total_Saturday.Text) + int.Parse(ConvertHours.RestBetweenHours(startTime, endTime));
+
+                        lbl_Total_Saturday.Text = plusTime.ToString();
+
+                        flp_Saturday.Controls.Add(button);
+                    }
+
+                }
+                else if (Sunday)
+                {
+                    lbl_total_Sunday.Text = "0";
+
+                    foreach (var item in sundayWorksHours)
+                    {
+                        Button button = new Button();
+                        button.Name = item.ID.ToString();
+                        button.Text = item.Code.ToString() + "\n" + item.StartDate + " / " + item.EndDate;
+                        button.Size = new Size(86, 45);
+                        button.BackColor = Color.White;
+                        button.FlatStyle = FlatStyle.Flat;
+
+                        button.Click += (s, ev) =>
+                        {
+                            Delete_Item_WorkHours(item.ID);
+                        };
+
+                        DateTime.TryParseExact(item.StartDate, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out startTime);
+                        DateTime.TryParseExact(item.EndDate, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out endTime);
+
+                        int plusTime = int.Parse(lbl_total_Sunday.Text) + int.Parse(ConvertHours.RestBetweenHours(startTime, endTime));
+
+                        lbl_total_Sunday.Text = plusTime.ToString();
+
+                        flp_Sunday.Controls.Add(button);
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("This is a ERROR? \n\n {" + ex.Message + "}");
+            }
+        }
+
+        private void dgv_WorksHorary_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                workHour = new WorkHours();
+                workHour.ID = (int)dgv_WorksHorary.CurrentRow.Cells[0].Value;
+                workHour.Code = dgv_WorksHorary.CurrentRow.Cells[1].Value.ToString();
+                workHour.StartDate = dgv_WorksHorary.CurrentRow.Cells[2].Value.ToString();
+                workHour.EndDate = dgv_WorksHorary.CurrentRow.Cells[3].Value.ToString();
+
+                if (Monday)
+                {
+                    bool exist = mondayWorksHours.Count > 0 ? WorksHoursExists(workHour, mondayWorksHours) : false;  
+
+                    if (!exist)
+                    {
+                        flp_Monday.Controls.Clear();
+                        mondayWorksHours.Add(workHour);
+                        Reload_Horary();
+                    }
+                    else
+                    {
+                        MessageBox.Show("This schedule has already been added!");
+                    }
+                }
+                else if (Tuesday)
+                {
+                    bool exist = tuesdayWorksHours.Count > 0 ? WorksHoursExists(workHour, tuesdayWorksHours) : false;
+
+
+                    if (!exist)
+                    {
+                        flp_Tuesday.Controls.Clear();
+                        tuesdayWorksHours.Add(workHour);
+                        Reload_Horary();
+                    }
+                    else
+                    {
+                        MessageBox.Show("This schedule has already been added!");
+                    }
+
+                }
+                else if (Wednesday)
+                {
+                    bool exist = wednesdayWorksHours.Count > 0 ? WorksHoursExists(workHour, wednesdayWorksHours) : false;
+
+
+                    if (!exist)
+                    {
+                        flp_Wednesday.Controls.Clear();
+                        wednesdayWorksHours.Add(workHour);
+                        Reload_Horary();
+                    }
+                    else
+                    {
+                        MessageBox.Show("This schedule has already been added!");
+                    }
+
+                }
+                else if (Thursday)
+                {
+                    bool exist = thursdayWorksHours.Count > 0 ? WorksHoursExists(workHour, thursdayWorksHours) : false;
+
+
+                    if (!exist)
+                    {
+                        flp_Thursday.Controls.Clear();
+                        thursdayWorksHours.Add(workHour);
+                        Reload_Horary();
+                    }
+                    else
+                    {
+                        MessageBox.Show("This schedule has already been added!");
+                    }
+
+                }
+                else if (Friday)
+                {
+                    bool exist = fridayWorksHours.Count > 0 ? WorksHoursExists(workHour, fridayWorksHours) : false;
+
+
+                    if (!exist)
+                    {
+                        flp_Friday.Controls.Clear();
+                        fridayWorksHours.Add(workHour);
+                        Reload_Horary();
+                    }
+                    else
+                    {
+                        MessageBox.Show("This schedule has already been added!");
+                    }
+
+                }
+                else if (Saturday)
+                {
+                    bool exist = saturdayWorksHours.Count > 0 ? WorksHoursExists(workHour, saturdayWorksHours) : false;
+
+
+                    if (!exist)
+                    {
+                        flp_Saturday.Controls.Clear();
+                        saturdayWorksHours.Add(workHour);
+                        Reload_Horary();
+                    }
+                    else
+                    {
+                        MessageBox.Show("This schedule has already been added!");
+                    }
+                }
+                else if (Sunday)
+                {
+                    bool exist = sundayWorksHours.Count > 0 ? WorksHoursExists(workHour, sundayWorksHours) : false;
+
+                    if (!exist)
+                    {
+                        flp_Sunday.Controls.Clear();
+                        sundayWorksHours.Add(workHour);
+                        Reload_Horary();
+                    }
+                    else
+                    {
+                        MessageBox.Show("This schedule has already been added!");
+                    }
+                } 
 
             }
             catch (Exception ex)
@@ -265,41 +731,16 @@ namespace EricWorkApp.Views
             }
         }
 
-        private void dgv_WorksHorary_MouseDown(object sender, MouseEventArgs e)
+        private void txt_Search_TextChanged(object sender, EventArgs e)
         {
+            try
+            {
 
-            workHour = new WorkHours();
-            workHour.ID = (int)dgv_WorksHorary.CurrentRow.Cells[0].Value;
-            workHour.Code = dgv_WorksHorary.CurrentRow.Cells[1].Value.ToString();
-            workHour.StartDate = dgv_WorksHorary.CurrentRow.Cells[2].Value.ToString();
-            workHour.EndDate = dgv_WorksHorary.CurrentRow.Cells[3].Value.ToString();
+            }
+            catch (Exception ex)
+            {
 
-            if(Monday)
-            {
-                mondayWorksHours.Add(workHour);
-            }
-            else if(Tuesday)
-            {
-                tuesdayWorksHours.Add(workHour);
-            }else if(Wednesday) 
-            { 
-                wednesdayWorksHours.Add(workHour);
-            }
-            else if(Thursday) 
-            {
-                thursdayWorksHours.Add(workHour);
-            }
-            else if(Friday) 
-            {
-                fridayWorksHours.Add(workHour);
-            }
-            else if(Saturday) 
-            { 
-                saturdayWorksHours.Add(workHour);
-            }
-            else if (Sunday) 
-            { 
-                sundayWorksHours.Add(workHour);
+                MessageBox.Show("This is a ERROR? \n\n {" + ex.Message + "}");
             }
         }
     }
