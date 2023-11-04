@@ -48,7 +48,27 @@ namespace EricWorkApp.Views
 
             LoadWorkHours();
         }
+        private void MinDayWork()
+        {
+            try
+            {
+                int day1 = mondayWorksHours.Count > 0 ? 1 : 0;
+                int day2 = tuesdayWorksHours.Count > 0 ? 1 : 0;
+                int day3 = wednesdayWorksHours.Count > 0 ? 1 : 0;
+                int day4 = thursdayWorksHours.Count > 0 ? 1 : 0;
+                int day5 = fridayWorksHours.Count > 0 ? 1 : 0;
+                int day6 = saturdayWorksHours.Count > 0 ? 1 : 0;
+                int day7 = sundayWorksHours.Count > 0 ? 1 : 0;
 
+                lbl_min_days.Text = (day1 +  day2 + day3 + day4 + day5 + day6 + day7).ToString();
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("This is a ERROR? \n\n {" + ex.Message + "}");
+            }
+        }
         private void LoadWorkHours()
         {
             try
@@ -470,6 +490,8 @@ namespace EricWorkApp.Views
 
                         lbl_Total_Wednesday.Text = plusTime.ToString();
 
+                        lbl_Total_Hours.Text = Plus_All_Label();
+
                         flp_Wednesday.Controls.Add(button);
                     }
 
@@ -498,6 +520,8 @@ namespace EricWorkApp.Views
                         int plusTime = int.Parse(lbl_Total_Thursday.Text) + int.Parse(ConvertHours.RestBetweenHours(startTime, endTime));
 
                         lbl_Total_Thursday.Text = plusTime.ToString();
+
+                        lbl_Total_Hours.Text = Plus_All_Label();
 
                         flp_Thursday.Controls.Add(button);
                     }
@@ -528,6 +552,8 @@ namespace EricWorkApp.Views
 
                         lbl_Total_Friday.Text = plusTime.ToString();
 
+                        lbl_Total_Hours.Text = Plus_All_Label();
+
                         flp_Friday.Controls.Add(button);
                     }
 
@@ -556,6 +582,8 @@ namespace EricWorkApp.Views
                         int plusTime = int.Parse(lbl_Total_Saturday.Text) + int.Parse(ConvertHours.RestBetweenHours(startTime, endTime));
 
                         lbl_Total_Saturday.Text = plusTime.ToString();
+
+                        lbl_Total_Hours.Text = Plus_All_Label();
 
                         flp_Saturday.Controls.Add(button);
                     }
@@ -586,6 +614,8 @@ namespace EricWorkApp.Views
 
                         lbl_total_Sunday.Text = plusTime.ToString();
 
+                        lbl_Total_Hours.Text = Plus_All_Label();
+
                         flp_Sunday.Controls.Add(button);
                     }
 
@@ -602,6 +632,9 @@ namespace EricWorkApp.Views
         {
             try
             {
+                DateTime startTime;
+                DateTime endTime;
+
                 workHour = new WorkHours();
                 workHour.ID = (int)dgv_WorksHorary.CurrentRow.Cells[0].Value;
                 workHour.Code = dgv_WorksHorary.CurrentRow.Cells[1].Value.ToString();
@@ -694,9 +727,16 @@ namespace EricWorkApp.Views
                 else if (Saturday)
                 {
                     bool exist = saturdayWorksHours.Count > 0 ? WorksHoursExists(workHour, saturdayWorksHours) : false;
+                    
+                    DateTime.TryParseExact(workHour.StartDate, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out startTime);
+                    DateTime.TryParseExact(workHour.EndDate, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out endTime);
 
-
-                    if (!exist)
+                    int minTime = int.Parse(ConvertHours.RestBetweenHours(startTime, endTime));
+                    if(minTime < 4)
+                    {
+                        MessageBox.Show("Hours per weekend must be less than 4 hours");
+                    }
+                    else if (!exist)
                     {
                         flp_Saturday.Controls.Clear();
                         saturdayWorksHours.Add(workHour);
@@ -711,7 +751,16 @@ namespace EricWorkApp.Views
                 {
                     bool exist = sundayWorksHours.Count > 0 ? WorksHoursExists(workHour, sundayWorksHours) : false;
 
-                    if (!exist)
+                    DateTime.TryParseExact(workHour.StartDate, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out startTime);
+                    DateTime.TryParseExact(workHour.EndDate, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out endTime);
+
+                    int minTime = int.Parse(ConvertHours.RestBetweenHours(startTime, endTime));
+                    if (minTime < 4)
+                    {
+                        MessageBox.Show("Hours per weekend must be less than 4 hours");
+                    }
+
+                    else if (!exist)
                     {
                         flp_Sunday.Controls.Clear();
                         sundayWorksHours.Add(workHour);
@@ -721,7 +770,9 @@ namespace EricWorkApp.Views
                     {
                         MessageBox.Show("This schedule has already been added!");
                     }
-                } 
+                }
+
+                MinDayWork();
 
             }
             catch (Exception ex)
@@ -733,14 +784,29 @@ namespace EricWorkApp.Views
 
         private void txt_Search_TextChanged(object sender, EventArgs e)
         {
-            try
+            if (string.IsNullOrEmpty(txt_Search.Text)) 
             {
-
+                LoadWorkHours();
             }
-            catch (Exception ex)
+            else
             {
+                List<DataGridViewRow> rowsToDelete = new List<DataGridViewRow>();
 
-                MessageBox.Show("This is a ERROR? \n\n {" + ex.Message + "}");
+                foreach (DataGridViewRow row in dgv_WorksHorary.Rows)
+                {
+                    string value = row.Cells[1].Value.ToString();
+                    bool exist = value.IndexOf(txt_Search.Text, StringComparison.OrdinalIgnoreCase) >= 0;
+
+                    if (!exist)
+                    {
+                        rowsToDelete.Add(row);
+                    }
+
+                }
+                foreach (DataGridViewRow row in rowsToDelete)
+                {
+                    dgv_WorksHorary.Rows.Remove(row);
+                }
             }
         }
     }
