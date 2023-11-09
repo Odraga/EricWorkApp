@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EricWorkApp.Properties {
+namespace WSMApp.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace EricWorkApp.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EricWorkApp.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WSMApp.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,6 +57,16 @@ namespace EricWorkApp.Properties {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _3248c048442fb74368873a083aa4cde4__thresher_shark_simple_things {
+            get {
+                object obj = ResourceManager.GetObject("3248c048442fb74368873a083aa4cde4--thresher-shark-simple-things", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -106,6 +116,16 @@ namespace EricWorkApp.Properties {
         internal static System.Drawing.Bitmap delete {
             get {
                 object obj = ResourceManager.GetObject("delete", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap info {
+            get {
+                object obj = ResourceManager.GetObject("info", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

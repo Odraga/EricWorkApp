@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EricWorkApp", "EricWorkApp\EricWorkApp.csproj", "{5A38D3EE-95B1-4946-8E8B-D2AC9C531248}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSMApp", "WSMApp\WSMApp.csproj", "{5A38D3EE-95B1-4946-8E8B-D2AC9C531248}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

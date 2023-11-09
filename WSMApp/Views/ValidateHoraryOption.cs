@@ -418,7 +418,6 @@ namespace EricWorkApp.Views
                         {
                             Delete_Item_WorkHours(item.ID);
                         };
-                        
 
                         DateTime.TryParseExact(item.StartDate, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out startTime);
                         DateTime.TryParseExact(item.EndDate, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out endTime);
@@ -426,8 +425,6 @@ namespace EricWorkApp.Views
                         int plusTime = int.Parse(lbl_Total_Monday.Text) + int.Parse(ConvertHours.RestBetweenHours(startTime, endTime));
                         
                         lbl_Total_Monday.Text = plusTime.ToString();
-
-                        lbl_Total_Hours.Text = Plus_All_Label();
 
                         flp_Monday.Controls.Add(button);
                     }
@@ -456,9 +453,7 @@ namespace EricWorkApp.Views
 
                         int plusTime = int.Parse(lbl_Total_Tuesday.Text) + int.Parse(ConvertHours.RestBetweenHours(startTime, endTime));
 
-                        lbl_Total_Tuesday.Text = plusTime.ToString();
-
-                        lbl_Total_Hours.Text = Plus_All_Label();
+                        lbl_Total_Tuesday.Text = plusTime.ToString();                        
 
                         flp_Tuesday.Controls.Add(button);
                     }
@@ -490,8 +485,6 @@ namespace EricWorkApp.Views
 
                         lbl_Total_Wednesday.Text = plusTime.ToString();
 
-                        lbl_Total_Hours.Text = Plus_All_Label();
-
                         flp_Wednesday.Controls.Add(button);
                     }
 
@@ -520,8 +513,6 @@ namespace EricWorkApp.Views
                         int plusTime = int.Parse(lbl_Total_Thursday.Text) + int.Parse(ConvertHours.RestBetweenHours(startTime, endTime));
 
                         lbl_Total_Thursday.Text = plusTime.ToString();
-
-                        lbl_Total_Hours.Text = Plus_All_Label();
 
                         flp_Thursday.Controls.Add(button);
                     }
@@ -552,8 +543,6 @@ namespace EricWorkApp.Views
 
                         lbl_Total_Friday.Text = plusTime.ToString();
 
-                        lbl_Total_Hours.Text = Plus_All_Label();
-
                         flp_Friday.Controls.Add(button);
                     }
 
@@ -582,8 +571,6 @@ namespace EricWorkApp.Views
                         int plusTime = int.Parse(lbl_Total_Saturday.Text) + int.Parse(ConvertHours.RestBetweenHours(startTime, endTime));
 
                         lbl_Total_Saturday.Text = plusTime.ToString();
-
-                        lbl_Total_Hours.Text = Plus_All_Label();
 
                         flp_Saturday.Controls.Add(button);
                     }
@@ -614,12 +601,12 @@ namespace EricWorkApp.Views
 
                         lbl_total_Sunday.Text = plusTime.ToString();
 
-                        lbl_Total_Hours.Text = Plus_All_Label();
-
                         flp_Sunday.Controls.Add(button);
                     }
 
                 }
+
+                lbl_Total_Hours.Text = Plus_All_Label();
             }
             catch (Exception ex)
             {
@@ -732,11 +719,11 @@ namespace EricWorkApp.Views
                     DateTime.TryParseExact(workHour.EndDate, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out endTime);
 
                     int minTime = int.Parse(ConvertHours.RestBetweenHours(startTime, endTime));
-                    if(minTime < 4)
+                    /*if(minTime < 4)
                     {
                         MessageBox.Show("Hours per weekend must be less than 4 hours");
-                    }
-                    else if (!exist)
+                    }*/
+                    if (!exist)
                     {
                         flp_Saturday.Controls.Clear();
                         saturdayWorksHours.Add(workHour);
@@ -755,12 +742,13 @@ namespace EricWorkApp.Views
                     DateTime.TryParseExact(workHour.EndDate, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out endTime);
 
                     int minTime = int.Parse(ConvertHours.RestBetweenHours(startTime, endTime));
-                    if (minTime < 4)
+                    /*if (minTime < 4)
                     {
                         MessageBox.Show("Hours per weekend must be less than 4 hours");
-                    }
+                    }*/
+                    
 
-                    else if (!exist)
+                    if (!exist)
                     {
                         flp_Sunday.Controls.Clear();
                         sundayWorksHours.Add(workHour);
@@ -808,6 +796,11 @@ namespace EricWorkApp.Views
                     dgv_WorksHorary.Rows.Remove(row);
                 }
             }
+        }
+
+        private void flp_Saturday_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

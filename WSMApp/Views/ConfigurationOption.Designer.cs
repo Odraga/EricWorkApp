@@ -220,7 +220,7 @@
             this.btn_delete_work_horary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_delete_work_horary.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.btn_delete_work_horary.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.btn_delete_work_horary.Image = global::EricWorkApp.Properties.Resources.delete;
+            this.btn_delete_work_horary.Image = global::WSMApp.Properties.Resources.delete;
             this.btn_delete_work_horary.Location = new System.Drawing.Point(384, 11);
             this.btn_delete_work_horary.Name = "btn_delete_work_horary";
             this.btn_delete_work_horary.Size = new System.Drawing.Size(86, 121);
@@ -238,7 +238,7 @@
             this.btn_add_work_hourary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_add_work_hourary.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.btn_add_work_hourary.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.btn_add_work_hourary.Image = global::EricWorkApp.Properties.Resources.boton_agregar;
+            this.btn_add_work_hourary.Image = global::WSMApp.Properties.Resources.boton_agregar;
             this.btn_add_work_hourary.Location = new System.Drawing.Point(476, 11);
             this.btn_add_work_hourary.Name = "btn_add_work_hourary";
             this.btn_add_work_hourary.Size = new System.Drawing.Size(81, 114);

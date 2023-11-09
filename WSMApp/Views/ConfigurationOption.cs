@@ -73,7 +73,7 @@ namespace EricWorkApp.Views
                 if (!string.IsNullOrEmpty(txt_code.Text) && !string.IsNullOrEmpty(validateHours))
                 {
                     WorkHours workHours = new WorkHours();
-                    lbl_total_hours.Text = validateHours + " Hour";
+                    lbl_total_hours.Text = validateHours;
 
 
                     workHours.Code = txt_code.Text;
